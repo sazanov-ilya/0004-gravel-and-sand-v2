@@ -1,0 +1,107 @@
+{% extends 'order/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Добавить новый продукт</title>
+{% endblock head %}
+
+{% block content %}
+
+        <h3>Добавить новый продукт</h3>
+        <form action="{% url 'new_product_1' %}" method="post">
+            {% csrf_token %}
+
+        <div class="form-error">
+            {{ form.non_field_errors }}
+        </div>
+
+            <!--{{ form.as_p }}-->
+
+
+            <div class="row">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">
+                        <label class="control-label" for="{{ form.product_name.id_for_label }}">
+                            {{form.product_name.label}}: 
+                        </label>
+                    </span>
+                    {{ form.product_name }}
+                </div>
+            </div>
+            <!--отображаем ошибки (некорректный ввод)-->
+            <div class="form-error">{{ form.product_name.errors }}</div>
+
+
+            <div class="row">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text">
+                        <label for="{{ form.slug.id_for_label }}" class="control-label">
+                            {{form.slug.label}}: 
+                        </label>
+                    </span>
+                    {{ form.slug }}
+                 </div>
+             </div>
+            <!--отображаем ошибки (некорректный ввод)-->
+            <div class="form-error">{{ form.slug.errors }}</div>
+
+            <div class="row">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text">
+                        <label for="{{ form.product_unit.id_for_label }}" class="control-label">
+                            {{form.product_unit.label}}: 
+                        </label>
+                    </span>
+                    {{ form.product_unit }}
+                 </div>
+             </div>
+            <!--отображаем ошибки (некорректный ввод)-->
+            <div class="form-error">{{ form.product_unit.errors }}</div>
+
+            <div class="row">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text">
+                        <label for="{{ form.product_price.id_for_label }}" class="control-label">
+                            {{form.product_price.label}}: 
+                        </label>
+                    </span>
+                    {{ form.product_price }}
+                 </div>
+             </div>
+            <!--отображаем ошибки (некорректный ввод)-->
+            <div class="form-error">{{ form.product_price.errors }}</div>
+
+            <div class="row">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text">
+                        <label for="{{ form.product_description.id_for_label }}" class="control-label">
+                            {{form.product_description.label}}: 
+                        </label>
+                    </span>
+                    {{ form.product_description }}
+                 </div>
+             </div>
+            <!--отображаем ошибки (некорректный ввод)-->
+            <div class="form-error">{{ form.product_description.errors }}</div>
+
+            <div class="row">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text">
+                        <label for="{{ form.product_is_published.id_for_label }}" class="control-label">
+                            {{form.product_is_published.label}}: 
+                        </label>
+                    </span>
+                    {{ form.product_is_published }}
+                 </div>
+             </div>
+            <!--отображаем ошибки (некорректный ввод)-->
+            <div class="form-error">{{ form.product_is_published.errors }}</div>
+
+
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <input class="btn btn-primary" type="submit" value="Сохранить">
+            </div>
+
+        </form>
+
+{% endblock content %}

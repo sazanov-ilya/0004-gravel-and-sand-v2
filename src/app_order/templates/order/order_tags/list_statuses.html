@@ -1,0 +1,12 @@
+<!--statuses получаем из order_tags.py/show_statuses-->
+{% for status in statuses %}
+    {% if status.count > 0 %}
+        {% if status.status_id == status_selected %}
+            <li>{{ status.status_name }}</li>
+        {% else %}
+            <li>
+                <a href="{{ status.get_absolute_url }}">{{ status.status_name }} ({{ status.count }})</a>
+            </li>
+        {% endif %}
+    {% endif %}
+{% endfor %}

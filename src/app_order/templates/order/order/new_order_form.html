@@ -1,0 +1,204 @@
+{% extends 'order/base.html' %}
+{% load static %}
+{% load order_tags %}
+
+{% block head %}
+    <title>{{ title }}</title>
+{% endblock head %}
+
+{% block sctipt %}
+    <script src="{% static 'order/js/new_order.js' %}"></script>
+{% endblock sctipt %}
+
+{% block content %}
+
+    <form action="{% url 'new_order_form' %}" method="post">
+        {% csrf_token %}
+
+    <!--общие ошибки формы (неверный логин пароль)-->
+    <div class="row">
+        <div class="input-group input-group-sm mb-3">
+            <div class="form-error">{{ form.non_field_errors }}</div>
+        </div></div>
+
+    <!--отображаем ошибки (некорректный ввод)-->
+    <div class="form-error">{{ form.order_name.errors }}</div>
+    <div class="form-error">{{ form.order_phone.errors }}</div>
+    <!--<div class="row row-cols-2">-->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="{{ form.order_name.id_for_label }}" class="control-label">
+                        {{ form.order_name.label }}
+                    </label>
+                </span>
+                {{ form.order_name }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="{{ form.order_phone.id_for_label }}" class="control-label" title="формат: +7(999) 999-9999">
+                    {{ form.order_phone.label }}
+                    </label>
+                </span>
+                <!--required pattern="[\+]\d{1}[\(]\d{3}[\)\ ]\d{3}[\-]\d{4}"-->
+                <!--required pattern="[\+][7]{1}[\(][0-9]{3}[\)\ ][0-9]{3}[\-][0-9]{4}"-->
+                {{ form.order_phone }}
+            </div>
+        </div>
+    </div>
+
+    <!--отображаем ошибки (некорректный ввод)-->
+    <div class="form-error">{{ form.product.errors }}</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="{{ form.product.id_for_label }}" class="control-label">
+                        {{ form.product.label }}
+                    </label>
+                </span>
+                {{ form.product }}
+            </div>
+        </div>
+    </div>
+
+    <!--отображаем ошибки (некорректный ввод)-->
+    <div class="form-error">{{ form.order_count.errors }}</div>
+    <div class="row row-cols-3">
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="{{ form.order_count.id_for_label }}" class="control-label" title="от 1 до 1000">
+                        {{ form.order_count.label }}
+                    </label>
+                </span>
+                {{ form.order_count }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="label_unit" class="control-label">Ед. измерения</label>
+                </span>
+                <input id="label_unit" class="form-control" type="text" value="тут ед. измерения" aria-label="Disabled input example" disabled readonly>
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="label_cost_unit" class="control-label">Цена за ед.</label>
+                </span>
+                <input id="label_cost_unit" class="form-control" type="text" value="тут цена" aria-label="Disabled input example" disabled readonly>
+            </div>
+        </div>
+    </div>
+
+    <!--отображаем ошибки (некорректный ввод)-->
+    <div class="form-error">{{ form.area.errors }}</div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="{{ form.area.id_for_label }}" class="control-label">
+                        {{ form.area.label }}
+                    </label>
+                </span>
+                {{ form.area }}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="label_delivery_cost" class="control-label">Стоимость доставки</label>
+                </span>
+                <input id="label_delivery_cost" class="form-control" type="text" value="тут стоимость доставки" aria-label="Disabled input example" disabled readonly>
+            </div>
+        </div>
+    </div>
+
+    <!--отображаем ошибки (некорректный ввод)-->
+    <div class="form-error">{{ form.order_cost.errors }}</div>
+    <div class="row">
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text">
+                <label for="{{ form.order_cost.id_for_label }}" class="control-label">
+                    {{ form.order_cost.label }}
+                </label>
+            </span>
+            {{ form.order_cost }}
+        </div>
+    </div>
+
+    <!--отображаем ошибки (некорректный ввод)-->
+    <div class="form-error">{{ form.order_address.errors }}</div>
+    <div class="row">
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text">
+                <label for="{{ form.order_address.id_for_label }}" class="control-label">
+                    {{ form.order_address.label }}
+                </label>
+            </span>
+            {{ form.order_address }}
+        </div>
+    </div>
+
+    <div class="row row-cols-3">
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="{{ form.order_date_delivery.id_for_label }}" class="control-label">
+                        {{ form.order_date_delivery.label }}
+                    </label>
+                </span>
+                {{ form.order_date_delivery }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="{{ form.order_time_delivery.id_for_label }}" class="control-label">
+                        {{ form.order_time_delivery.label }}
+                    </label>
+                </span>
+                {{ form.order_time_delivery }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="{{ form.order_timezone.id_for_label }}" class="control-label">
+                        {{ form.order_timezone.label }}
+                    </label>
+                </span>
+                {{ form.order_timezone }}
+            </div>
+        </div>
+    </div>
+    <!--отображаем ошибки (некорректный ввод)-->
+    <div class="form-error">{{ form.order_date_delivery.errors }}</div>
+    <div class="form-error">{{ form.order_time_delivery.errors }}</div>
+    <div class="form-error">{{ form.order_timezone.errors }}</div>
+
+    <div class="row">
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text">
+                <label for="{{ form.order_description.id_for_label }}" class="control-label">
+                    {{ form.order_description.label }}
+                </label>
+            </span>
+            {{ form.order_description }}
+        </div>
+    </div>
+    <!--отображаем ошибки (некорректный ввод)-->
+    <div class="form-error">{{ form.order_description.errors }}</div>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <input class="btn btn-primary" type="submit" value="Заказать">
+    </div>
+
+    </form>
+
+{% endblock content %}

@@ -1,0 +1,65 @@
+{% extends 'order/base.html' %}
+{% load static %}
+{% load order_tags %}
+
+{% block head %}
+    <title>{{ title }}</title>
+{% endblock head %}
+
+{% block content %}
+<!--Меню локальной странички-->
+<!--Перенесено на включающий тег-->
+
+<!--Меню статусов-->
+<ul>
+    {% if status_selected == 0 %}
+        <li>Все статусы</li>
+    {% else %}
+        <li>
+            <a href="{% url 'orders' %}">Все статусы</a>
+        </li>
+    {% endif %}
+
+    <!--templatetags/order_tags.py/show_statuses/list_statuses.html-->
+    {% show_statuses user 'status_id' status_selected %}
+
+</ul>
+<!--КОНЕЦ-меню статусов-->
+
+<!--Контент локальной странички-->
+<h2>Список заказов</h2>
+
+<ul>
+    <hr>
+    {% for order in orders %}
+    <li>
+        <p>
+            <b>Заказ №: </b>{{ order.order_id }}
+        </p>
+        <p>
+            <b>Пользовавтель: </b>{{ order.user }}
+        </p>
+        <p>
+            <b>Создан: </b>{{ order.order_date }}
+        </p>
+        <p>
+            <b>Наименование: </b>
+            <a href="{{ order.get_absolute_url }}">
+                {{ order.product.product_name }}
+            </a>
+        </p>
+        <p>
+            <b>Сумма: </b>{{ order.order_cost }}
+        </p>
+        <p>
+            <b>Статус: </b>{{ order.status.status_name }} ({{ order.status_date|date:"d.m.Y H:i:s" }})
+        </p>
+        <hr>
+    </li>
+
+    {% endfor %}
+    <hr>
+</ul>
+<!--КОНЕЦ-контент локальной странички-->
+
+{% endblock content %}

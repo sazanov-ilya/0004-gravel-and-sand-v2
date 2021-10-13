@@ -1,0 +1,56 @@
+{% extends 'user/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Авторизация</title>
+{% endblock head %}
+
+{% block content %}
+<!--<form action="{% url 'save_new_order' %}" method="POST">{% csrf_token %}-->
+<form>{% csrf_token %}
+
+    <!-- общие ошибки (неверный логин пароль) -->
+    <div class="form-error">{{ form.non_field_errors }}</div>
+
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+
+        <div class="d-flex flex-column bd-highlight mb-3">
+            <label for="input_login" class="control-label">Введите логин</label>
+            <input type="text" id="input_login" name="input_login" class="form-control" placeholder="ваш логин" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="200" required>
+        </div>
+
+        <div class="d-flex flex-column bd-highlight mb-3">
+            <label for="input_password" class="control-label">Введите пароль</label>
+            <input type="password"id="input_password" name="input_password" placeholder="ваш пароль" class="form-control" id="inputPassword" aria-labelledby="passwordnotification">
+        </div>
+
+        <!-- Кнопки -->
+        <div class="d-flex flex-column bd-highlight mb-3">
+            <div class="row row-cols-2">
+                <div class="col d-flex">
+                    <input class="btn btn-primary" type="submit" value="Войти">
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <!--<input class="btn btn-light" type="submit" value="Регистрация">-->
+                    <a class="btn btn-light" href="{% url 'register' %}" role="button">Регистрация</a>
+                </div>
+            </div>
+         </div>
+        <!-- Войти через...-->
+        <div class="d-flex flex-column bd-highlight mb-3">
+            <!--
+            <label class="control-label">Войти через</label>
+            <input type="text" id="test" class="form-control" placeholder="ваш логин" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="200" required>
+            -->
+            <span class="d-flex justify-content-end">
+                <a href="{% url "social:begin" "github" %}"><img src="{% static 'user/images/github.png' %}" width="100" alt="Пример"></a>
+            </span>
+        </div>
+
+    </div>
+
+</form>
+
+{% endblock content %}
+
+

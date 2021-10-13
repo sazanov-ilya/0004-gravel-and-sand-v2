@@ -1,0 +1,40 @@
+{% extends 'order/base.html' %}
+{% load static %}
+{% load order_tags %}
+
+{% block head %}
+
+    <title>Данные по продукту</title>
+
+{% endblock head %}
+
+{% block content %}
+
+    <!--контент локальной странички-->
+<h3>Данные по продукту</h3>
+<hr>
+
+<p>
+    <b>Наименование: </b>{{ product.product_name }}
+</p>
+{% if product.product_photo %}
+    <p><b>Фото: </b></p>
+    <p><img src="{{ product.product_photo.url }}" class="product_img img-thumbnail img-fluid rounded float-start shadow-sm" alt="product_photo"></p>
+    <div class="clear"></div>
+{% else %}
+    <p><b>Фото: </b>отсутствует</p>
+{% endif %}
+<p>
+    <b>Описание: </b>{{ product.product_description }}
+</p>
+<p>
+    <b>Ед. измерения: </b>{{ product.product_unit }}
+</p>
+<p>
+    <b>Цена за ед.: </b>{{ product.product_price }}
+</p>
+
+<hr>
+<!--КОНЕЦ-контент локальной странички-->
+
+{% endblock content %}

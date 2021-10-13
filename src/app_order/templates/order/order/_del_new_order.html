@@ -1,0 +1,167 @@
+{% extends 'order/base.html' %}
+{% load static %}
+{% load order_tags %}
+
+{% block head %}
+    <title>Оформление заказа</title>
+{% endblock head %}
+
+{% block sctipt %}
+    <script src="{% static 'order/js/new_order.js' %}"></script>
+{% endblock sctipt %}
+
+{% block content %}
+<form action="{% url 'save_new_order' %}" method="POST">
+    {% csrf_token %}
+
+    <div class="row row-cols-2">
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="input_name" class="control-label">Имя</label>
+                </span>
+                <input type="text" id="input_name" name="input_name" class="form-control" placeholder="ваше имя" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="200" required>
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="input_phone" class="control-label" title="формат: +7(999) 999-9999">Телефон</label>
+                </span>
+                <!--required pattern="[\+]\d{1}[\(]\d{3}[\)\ ]\d{3}[\-]\d{4}"-->
+                <!--required pattern="[\+][7]{1}[\(][0-9]{3}[\)\ ][0-9]{3}[\-][0-9]{4}"-->
+                <input type="text" id="input_phone" name="input_phone" class="form-control phone_mask" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="200" required pattern="[\+]\d{1}[\(]\d{3}[\)\ ]\d{3}[\-]\d{4}">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text">
+                <label for="select_product" class="control-label">Товар</label>
+            </span>
+            <select id="select_product" name="select_product" class="form-select form-select-sm" aria-label=".form-select-sm example" required>
+
+                <option value=""></option>
+                {% for product in data.products %}
+                <option value={{ product.product_id }}>{{ product.product_name }}</option>
+                {% endfor %}
+
+            </select>
+        </div>
+    </div>
+
+    <div class="row row-cols-3">
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="input_count_unit" class="control-label" title="от 1 до 1000">Количество</label>
+                </span>
+                <input type="number" id="input_count_unit" name="input_count_unit" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required min="1" max="1000">
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="label_unit" class="control-label">Ед. измерения</label>
+                </span>
+                <input id="label_unit" class="form-control" type="text" value="тут ед. измерения" aria-label="Disabled input example" disabled readonly>
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="label_cost_unit" class="control-label">Цена за ед.</label>
+                </span>
+                <input id="label_cost_unit" class="form-control" type="text" value="тут цена" aria-label="Disabled input example" disabled readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="select_area" class="control-label">Район доставки</label>
+                </span>
+                <select id="select_area" name="select_area" class="form-select form-select-sm" aria-label=".form-select-sm example" required>
+                    
+                    <option value=""></option>
+                    {% for area in data.areas %}
+                    <option value={{ area.area_id }}> {{ area.area_name }}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="label_delivery_cost" class="control-label">Стоимость доставки</label>
+                </span>
+                <input id="label_delivery_cost" class="form-control" type="text" value="тут стоимость доставки" aria-label="Disabled input example" disabled readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text">
+                <label for="input_all_cost" class="control-label">Общая стоимость</label>
+            </span>
+            <input id="input_all_cost" name="input_all_cost" class="form-control" type="text" value="1000" aria-label="Disabled input example" readonly>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text">
+                <label for="input_address" class="control-label">Адрес</label>
+            </span>
+            <textarea id="input_address" name="input_address" class="form-control" rows="2" required></textarea>
+        </div>
+    </div>
+
+    <div class="row row-cols-3">
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="input_date_delivery" class="control-label">Дата доставки</label>
+                </span>
+                <input id="input_date_delivery" name="input_date_delivery" type='date' class="form-control" required />
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="input_time_delivery" class="control-label">Время доставки</label>
+                </span>
+                <input id="input_time_delivery" name="input_time_delivery" type='time' class="form-control" required />
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">
+                    <label for="input_timezone" class="control-label">Timezone</label>
+                </span>
+                <input id="input_timezone" name="input_timezone" class="form-control" type="text" value="Timezone" aria-label="Disabled input example" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text">
+                <label for="input_description" class="control-label">Комментарий</label>
+            </span>
+            <textarea id="input_description" name="input_description" class="form-control" rows="5"></textarea>
+        </div>
+    </div>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <input class="btn btn-primary" type="submit" value="Заказать">
+    </div>
+
+</form>
+
+{% endblock content %}

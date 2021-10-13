@@ -1,0 +1,29 @@
+{% extends 'order/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Добавить новый продукт</title>
+{% endblock head %}
+
+{% block content %}
+
+        <h3>Добавить новый продукт</h3>
+        <form action="{% url 'new_product_2' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+        <!--
+        <div class="form-error">
+            {{ form.non_field_errors }}
+        </div>
+        -->
+
+        {{ form.as_p }}
+
+
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <input class="btn btn-primary" type="submit" value="Сохранить">
+            </div>
+
+        </form>
+
+{% endblock content %}

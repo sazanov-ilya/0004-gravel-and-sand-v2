@@ -1,0 +1,62 @@
+{% extends 'order/base.html' %}
+{% load static %}
+{% load order_tags %}
+
+{% block head %}
+    <title>{{ title }}</title>
+{% endblock head %}
+
+{% block content %}
+
+<!--контент локальной странички-->
+<h3>Данные заказа</h3>
+<hr>
+<p>
+    <b>Заказ №: </b>{{ order.order_id }}
+</p>
+<p>
+    <b>Пользователь: </b>{{ order.user }}
+</p>
+<p>
+    <b>Дата создания: </b>{{ order.order_date|date:"d.m.Y H:i:s" }}
+</p>
+<p>
+    <b>Имя: </b>{{ order.order_name }}
+</p>
+<p>
+    <b>Телефон: </b>{{ order.order_phone }}
+</p>
+<p>
+    <b>Продукт: </b>{{ order.product }}
+</p>
+<p>
+    <b>Количество: </b>{{ order.order_count }}
+</p>
+<p>
+    <b>Район: </b>{{ order.area }}
+</p>
+<p>
+    <b>Адрес: </b>{{ order.order_address }}
+</p>
+<p>
+    <b>Дата доставки: </b>{{ order.order_date_delivery|date:"d.m.Y" }}
+</p>
+<p>
+    <b>Воемя доставки: </b>{{ order.order_time_delivery|date:"H:i" }}
+</p>
+<p>
+    <b>Описание заказа: </b>{{ order.order_description }}
+</p>
+<p>
+    <b>Стоимость: </b>{{ order.order_cost }}
+</p>
+<p>
+    <b>Статус заказа: </b>{{ order.status }}
+</p>
+<p>
+     <b>Дата установки статуса: </b>{{ order.status_date|date:"d.m.Y H:i:s" }}
+</p>
+<hr>
+<!--КОНЕЦ-контент локальной странички-->
+
+{% endblock content %}

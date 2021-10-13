@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+        label {
+        display:inline-block;
+        width:150px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="row row-cols-1">
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text">
+                  <label for="input-name" class="control-label">Имя</label>
+              </span>
+              <input type="text" id="input-name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text">
+                  <label for="input-phone" class="control-label">Телефон</label>
+              </span>
+              <input type="text" id="input-phone" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text">
+                  <label for="select-product" class="control-label">Товар</label>
+              </span>
+              <select id="select-product" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                  <option selected>что заказываем?</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+              </select>
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text">
+                  <label for="label-unit" class="control-label">Ед. измерения/цена</label>
+              </span>
+              <input id="label-unit" class="form-control" type="text" value="тут будет отображаться ед. измерения/цена" aria-label="Disabled input example" disabled readonly>
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text">
+                  <label for="input-count" class="control-label">Количество</label>
+              </span>
+              <input type="text" id="input-count" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text">
+                <label for="select-area" class="control-label">Район доставки</label>
+            </span>
+            <select id="select-area" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option selected>ваш район?</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text">
+                  <label for="label-delivery-cost" class="control-label">Стоимость доставки</label>
+              </span>
+              <input id="label-delivery-cost" class="form-control" type="text" value="тут будет стоимость доставки" aria-label="Disabled input example" disabled readonly>
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text">
+                  <label for="label-all-cost" class="control-label">Общая стоимость</label>
+              </span>
+              <input id="label-all-cost" class="form-control" type="text" value="тут будет общая стоимость" aria-label="Disabled input example" disabled readonly>
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text">
+                  <label for="input-address" class="control-label">Адрес</label>
+              </span>
+              <textarea id="input-address" class="form-control" rows="2"></textarea>
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text">
+                  <label for="input-date-delivery" class="control-label">Дата доставки</label>
+              </span>
+              <input id="input-date-delivery" type='date' class="form-control" />
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text">
+                  <label for="input-time-delivery" class="control-label">Время доставки</label>
+              </span>
+              <input id="input-time-delivery" type='time' class="form-control" />
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text">
+                  <label for="input-description" class="control-label">Комментарий</label>
+              </span>
+              <textarea id="input-description" class="form-control" rows="5"></textarea>
+          </div>
+      </div>
+
+  </div>
+</div>
+
+</body>
+</html>

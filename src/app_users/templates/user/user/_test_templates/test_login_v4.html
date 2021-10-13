@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+        /*body{
+            margin-top: 30px;
+        
+        label {
+        display:inline-block;
+        width:150px;
+        }}*/
+    </style>
+
+</head>
+<body>
+
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+
+<!-- Меню -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="#">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+				</li>
+			</ul>
+			<form class="d-flex">
+				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success" type="submit">Search</button>
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+<!-- Контент -->
+<!--<div class="container">-->
+
+    <div>
+		<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+			<div class="d-flex flex-column bd-highlight mb-3">
+				<label for="input_login" class="control-label">Введите логин</label>
+				<input type="text" id="input_login" name="input_login" class="form-control" placeholder="ваш логин" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="200" required>
+			</div>
+			<div class="d-flex flex-column bd-highlight mb-3">
+				<label for="input_password" class="control-label">Введите пароль</label>
+				<input type="password"id="input_password" name="input_password" placeholder="ваш пароль" class="form-control" id="inputPassword" aria-labelledby="passwordnotification">
+			</div>
+			<div class="d-flex flex-column bd-highlight mb-3">
+				<input class="btn btn-primary" type="submit" value="Войти">
+			</div>
+		</div>
+	</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'order/base_paginator.html' %}
+{% load static %}
+{% load order_tags %}
+
+{% block head %}
+    <title>{{ title }}</title>
+{% endblock head %}
+
+{% block content %}
+
+<!--контент локальной странички-->
+<h2>Список товаров</h2>
+
+<ul>
+    <hr>
+    {% for product in products %}
+    <li>
+        <h3>{{ product.product_name }}</h3>
+
+        {% if product.product_photo %}
+            <p><img src="{{ product.product_photo.url }}" class="product_img img-thumbnail img-fluid rounded float-start shadow-sm" alt="product_photo"></p>
+        {% endif %}
+
+        {{ product.product_description|linebreaks|truncatewords:10 }}
+        
+        <div class="clear"></div>
+        <p><a href="{{ product.get_absolute_url }}">Подробнее</a></p>
+        <hr>
+    </li>
+
+    {% endfor %}
+    <hr>
+</ul>
+<!--КОНЕЦ-контент локальной странички-->
+
+{% endblock content %}
